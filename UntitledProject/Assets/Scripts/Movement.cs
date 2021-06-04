@@ -4,40 +4,45 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private Rigidbody rb;
-    private float HorizontalInput;
-    private float VerticalInput;
-    public float MovementSpeed;
-    public float DownForce;
-    public float DownForceRayLenght;
+    public CharacterController controller;
+    public Transform cam;
+    public Transform groundCheck;
 
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
-    private void FixedUpdate()
-    {
-        PlayerMovement();
-    }
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
+    bool isGrounded;
 
-    private void PlayerMovement()
-    {
-        HorizontalInput = Input.GetAxis("Horizontal");
-        VerticalInput = Input.GetAxis("Vertical");
-        rb.velocity = new Vector3(HorizontalInput * MovementSpeed, rb.velocity.y, VerticalInput * MovementSpeed);
+    public float speed = 6f;
+    public float gravity = -9.81f;
 
-        if ((HorizontalInput != 0 || VerticalInput != 0) && OnSlope())
+    Vector3 velocity;
+
+    public float turnSmoothTime = 0.1f;
+    float turnSmoothVelocity;
+
+    private void Update()
+    {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        if(isGrounded && velocity.y < 0)
         {
-            rb.velocity = new Vector3(HorizontalInput * MovementSpeed, rb.velocity.y + DownForce, VerticalInput * MovementSpeed);
+            velocity.y = -2f;
         }
-    }
 
-    private bool OnSlope()
-    {
-        RaycastHit Hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out Hit, DownForceRayLenght))
-            if (Hit.normal != Vector3.up)
-                return true;
-        return false;
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
+        if(direction.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            controller.Move(moveDir.normalized * speed * Time.deltaTime);
+        }
+        velocity.y += gravity * Time.deltaTime;
+
+        controller.Move(velocity * Time.deltaTime);
     }
 }
