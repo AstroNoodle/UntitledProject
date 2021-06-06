@@ -10,6 +10,7 @@ public class Combat : MonoBehaviour
     public LayerMask enemyLayers;
 
     public int attackDamage = 40;
+    public int health = 100;
 
     public float attackRate = 2f;
     private float nextAttackTime = 0f;
@@ -18,11 +19,24 @@ public class Combat : MonoBehaviour
     {
         if(Time.time >= nextAttackTime)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.LeftControl))
             {
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            health -= 20;
+            Debug.Log(health);
+        }
+        if (health <= 0)
+        {
+            Application.LoadLevel(0);
         }
     }
 

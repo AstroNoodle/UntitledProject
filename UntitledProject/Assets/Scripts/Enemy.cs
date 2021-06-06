@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("Enemy died!");
 
         GetComponent<Collider>().enabled = false;
+        GetComponent<MeshRenderer>().enabled = false;
         this.enabled = false;
     }
 }
