@@ -44,30 +44,32 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11510}
+      Script: {instanceID: 11550}
     - Class: 114
-      Script: {instanceID: 11554}
+      Script: {instanceID: 11594}
     - Class: 114
-      Script: {instanceID: 12108}
+      Script: {instanceID: 12146}
     - Class: 114
-      Script: {instanceID: 12162}
+      Script: {instanceID: 12200}
     - Class: 114
-      Script: {instanceID: 12214}
+      Script: {instanceID: 12252}
     - Class: 114
-      Script: {instanceID: 12256}
+      Script: {instanceID: 12294}
     - Class: 114
-      Script: {instanceID: 12494}
+      Script: {instanceID: 12532}
     - Class: 114
-      Script: {instanceID: 12704}
+      Script: {instanceID: 12742}
     - Class: 114
-      Script: {instanceID: 13256}
+      Script: {instanceID: 13292}
     - Class: 114
-      Script: {instanceID: 13294}
+      Script: {instanceID: 13330}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 136
@@ -77,6 +79,8 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 258
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -766,4 +770,4 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/Untitled.unity
-  playerPath: "C:/Users/U\u017Cytkownik/Desktop/Build/UntitledProject.exe"
+  playerPath: C:/Users/Maxx/Desktop/LightTraceBuild/UntitledProject.exe
