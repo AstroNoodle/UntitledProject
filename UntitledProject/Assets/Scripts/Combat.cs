@@ -27,7 +27,7 @@ public class Combat : MonoBehaviour
     public Text exp;
 
     public int enemiesKilled = 0;
-    public int expvalue;
+    public int expValue;
 
     void Update()
     {
@@ -53,13 +53,13 @@ public class Combat : MonoBehaviour
         }
         if(questOn && enemiesKilled == 3)
         {
-            expvalue += 20;
+            expValue += 20;
             questOn = false;
             enemiesKilled = 0;
             whatQuest.text = "";
             questReward.text = "";
             questProg.text = "";
-            exp.text = "Experiance: " + expvalue;
+            exp.text = "Experiance: " + expValue;
         }
     }
 
@@ -94,6 +94,7 @@ public class Combat : MonoBehaviour
 
     public void Quest()
     {
+        enemiesKilled = 0;
         Debug.Log("Quest");
         questOn = true;
     }
