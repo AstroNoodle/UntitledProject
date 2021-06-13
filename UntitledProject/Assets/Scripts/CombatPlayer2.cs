@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombatPlayer2 : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class CombatPlayer2 : MonoBehaviour
 
     public float attackRate = 2f;
     private float nextAttackTime = 0f;
+
+    public Combat Combat;
 
     void Update()
     {
@@ -48,6 +51,7 @@ public class CombatPlayer2 : MonoBehaviour
         {
             Debug.Log("Hit " + enemy.name);
             enemy.GetComponent<Enemy>().takeDamage(attackDamage);
+            Combat.enemiesKilled += 1;
         }
     }
 
