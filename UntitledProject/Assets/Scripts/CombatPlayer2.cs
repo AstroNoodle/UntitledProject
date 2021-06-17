@@ -18,6 +18,9 @@ public class CombatPlayer2 : MonoBehaviour
 
     public Combat Combat;
 
+    public GameObject QuestWindow;
+    public Text HPamount1;
+
     void Update()
     {
         if (Time.time >= nextAttackTime)
@@ -28,6 +31,7 @@ public class CombatPlayer2 : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
+        HPamount1.text = "Health P2: " + health;
     }
 
     private void OnTriggerEnter(Collider collision)

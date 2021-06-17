@@ -25,6 +25,7 @@ public class Combat : MonoBehaviour
     public Text questReward;
     public Text questProg;
     public Text exp;
+    public Text HPamount;
 
     public int enemiesKilled = 0;
     public int expValue;
@@ -61,6 +62,7 @@ public class Combat : MonoBehaviour
             questProg.text = "";
             exp.text = "Experiance: " + expValue;
         }
+        HPamount.text = "Health P1: " + health;
     }
 
     private void OnTriggerEnter(Collider collision)
